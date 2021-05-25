@@ -6,14 +6,14 @@ import java.util.List;
 
 //https://www.youtube.com/watch?v=G4_OxJGonQY&list=PL_z_8CaSLPWdJfdZHiNYYM46tYQUjbBJx&index=4
 public class FindMissingAndDuplicateNumber {
-
+//can also be done in one traversal with some modification
 	// https://practice.geeksforgeeks.org/problems/find-missing-and-repeating2512/1
 	public int[] findMissingAndDuplicateSingle(int[] arr) {
 		int[] result = new int[2];
 		int i = 0;
 		while (i < arr.length) {
 			if (arr[i] != arr[arr[i] - 1])
-				swap(arr, i);
+				swap(arr, i, arr[i] - 1);
 			else
 				i++;
 		}
@@ -35,7 +35,7 @@ public class FindMissingAndDuplicateNumber {
 				while (arr[i] != i + 1) {
 					if (arr[arr[i] - 1] == arr[i])
 						break;
-					swap(arr, i);
+					swap(arr, i, arr[i] - 1);
 				}
 			}
 			i++;
@@ -50,10 +50,10 @@ public class FindMissingAndDuplicateNumber {
 		return result;
 	}
 
-	private void swap(int[] arr, int index) {
-		int t = arr[arr[index] - 1];
-		arr[arr[index] - 1] = arr[index];
-		arr[index] = t;
+	private void swap(int[] arr, int i, int j) {
+		int t = arr[i];
+		arr[i] = arr[j];
+		arr[j] = t;
 	}
 
 	public ArrayList<Integer> repeatedNumber(final List<Integer> A) {
@@ -76,27 +76,5 @@ public class FindMissingAndDuplicateNumber {
 		ans.add(duplicate);
 		ans.add(missing);
 		return ans;
-	}
-
-	public int findDuplicate(int[] nums) {
-		int n = nums.length;
-		int j = n - 1;
-		int i = 0;
-		while (i < n) {
-			if ((i + 1) != nums[i])
-				swap(nums, i, i + 1);
-			else
-				i++;
-		}
-		for (i = 0; i < n; i++)
-			if ((i + 1) != nums[i])
-				return nums[i];
-		return -1;
-	}
-
-	private void swap(int[] nums, int i, int j) {
-		int temp = nums[i];
-		nums[i] = nums[j];
-		nums[j] = temp;
 	}
 }

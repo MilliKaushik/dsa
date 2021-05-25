@@ -2,6 +2,7 @@ package stack.stackapplications;
 
 import java.util.Stack;
 
+//stock span problem = consecutive smaller or equal = NGL index = i - NGL index
 //https://www.youtube.com/watch?v=p9T-fE1g1pU&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd&index=6
 public class StockSpanProblem {
 

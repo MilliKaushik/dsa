@@ -7,10 +7,9 @@ import java.util.Stack;
 public class NearestGreaterToRightOrNextLargestElement {
 
 	public int[] nextLargestElement(int[] arr) {
-		int n = arr.length;
-		int[] result = new int[n];
+		int[] result = new int[arr.length];
 		Stack<Integer> stack = new Stack<>();
-		for (int i = n - 1; i >= 0; i--) {
+		for (int i = arr.length - 1; i >= 0; i--) {
 			if (stack.isEmpty())
 				result[i] = -1;
 			else if (arr[i] < stack.peek())

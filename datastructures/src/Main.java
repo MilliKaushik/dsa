@@ -2,18 +2,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import array.FindTheCelebrity;
 import array.RotateArrayByK;
 import array.ThreeSum;
-import array.binarySearch.AllocateMinimumNumberOfPages;
-import array.binarySearch.FindElementInBitonicArray;
-import array.binarySearch.FloorInASortedArray;
-import array.binarySearch.NextAlphabetElement;
-import array.binarySearch.RemoveDuplicatesfromSortedArray;
-import array.binarySearch.SearchinRotatedSortedArray;
-import array.binarySearch.SearchingInANearlySortedArray;
 import array.bitwise.HammingDistance;
 import array.bitwise.ReverseBits;
 import array.bitwise.SumOfTwoNosWithoutPlusMinusOperator;
+import array.graph.CloneGraph;
+import array.graph.CloneGraph.Node;
 import array.math.DivideTwoIntegers;
 import array.math.FractionToDecimal;
 import array.math.NthNaturalNumber;
@@ -22,39 +18,57 @@ import array.math.Power;
 import array.math.PowerOfThree;
 import array.math.PrintPrimeFactors;
 import array.math.SquareRoot;
+import array.matrix.SpiralMatrix;
 import array.misc.ConsecutiveArrayElements;
 import array.misc.PowerSet;
 import array.missingAndDuplicateFrom1ToN.FindMissingAndDuplicateNumber;
 import array.orderStatistics.SmallestMissingNumber;
 import array.search.AppearingOnce;
 import array.search.MajorityElement;
+import array.slidingWindow.FindIndicesOfOccurrencesOfAnagram;
+import array.slidingWindow.LongestSubstringWithKUniqueCharacters;
+import array.slidingWindow.LongestSubstringWithoutRepeatingCharacters;
 import array.sort.MergeIntervals;
 import array.sort.SortColours;
+import binarySearch.AllocateMinimumNumberOfPages;
+import binarySearch.FindElementInBitonicArray;
+import binarySearch.FloorInASortedArray;
+import binarySearch.NextAlphabetElement;
+import binarySearch.NoOfTimesRotatedCOPY;
+import binarySearch.RemoveDuplicatesfromSortedArray;
+import binarySearch.SearchinRotatedSortedArray;
+import binarySearch.SearchingInANearlySortedArray;
 import design.LRUCache2;
-import dynamicProgramming.BestTimeToBuyAndSellStocksMultipleTransactions;
-import dynamicProgramming.EqualPartitionSubsetSumTabular;
+import dynamicProgramming.EqualPartitionSubsetSum;
 import dynamicProgramming.IsSubsequence;
 import dynamicProgramming.LongestCommonSubstring;
+import dynamicProgramming.LongestIncreasingSubsequence;
+import dynamicProgramming.LongestPalindromicSubstring;
 import heap.KClosestNumbers;
 import heap.KClosestNumbersGFG;
 import heap.KLargestElementsInArray;
 import heap.TopKFrequentNumbers;
+import linkedList.AddTwoNumbers2;
 import linkedList.ListNode;
 import linkedList.ReverseLinkedList;
+import recursion.Permutations;
+import recursion.SortArray;
 import stack.stackapplications.MaximumAreaHistogram;
 import stack.stackapplications.MaximumAreaRectangleInBinaryMatrixLEETCODE;
-import stack.stackapplications.MinStack;
+import stack.stackapplications.MinStackExtraSpace;
+import stack.stackapplications.MinStackNoExtraSpace;
 import string.GroupAnagramsCOPY;
 import string.GroupAnagramsFromList;
-import string.LongestPalindromicSubstring;
-import string.LongestSubstringWithoutRepeatingCharacters;
 import string.ReverseInteger;
+import string.ReverseWordsInString1;
 import string.StringCompression;
 import string.StringToIntegerATOI;
 import string.StudentGradeProblem;
-import tree.BinaryTreeInorderTraversal;
+import tree.BTInorderTraversal;
+import tree.BinaryTreeInorderPreorderConstruct;
 import tree.MaximumDepthOfTree;
 import tree.TreeNode;
+import tree.ZigzagLevelOrderTraversal;
 
 public class Main {
 
@@ -168,7 +182,7 @@ public class Main {
 		AppearingOnce o1 = new AppearingOnce();
 		int[] num1 = { 1, 1, 2, 3, 2 };
 		// System.out.println(o1.getAppearingOnce(num1));
-		EqualPartitionSubsetSumTabular e = new EqualPartitionSubsetSumTabular();
+		EqualPartitionSubsetSum e = new EqualPartitionSubsetSum();
 		int[] arr1 = { 1, 2, 5 };
 		// e.canPartition(arr1);
 
@@ -303,7 +317,7 @@ public class Main {
 		MaximumDepthOfTree max = new MaximumDepthOfTree();
 		// System.out.println(max.isValidBST(t1));
 
-		MinStack min1 = new MinStack();
+		MinStackExtraSpace min1 = new MinStackExtraSpace();
 		min1.push(0);
 		min1.push(1);
 		min1.push(0);
@@ -311,7 +325,8 @@ public class Main {
 		// min1.pop();
 		// System.out.println(min1.getMin());
 
-		BestTimeToBuyAndSellStocksMultipleTransactions bestTime = new BestTimeToBuyAndSellStocksMultipleTransactions();
+		// BestTimeToBuyAndSellStocksMultipleTransactions bestTime = new
+		// BestTimeToBuyAndSellStocksMultipleTransactions();
 		// int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
 		int[] prices = new int[] { 1, 2, 3, 4, 5 };
 		// System.out.println(bestTime.maxProfitMemoized(prices));
@@ -371,7 +386,7 @@ public class Main {
 		DivideTwoIntegers divide = new DivideTwoIntegers();
 		// System.out.println(divide.divide(-2147483648, 2));
 
-		BinaryTreeInorderTraversal inorder = new BinaryTreeInorderTraversal();
+		BTInorderTraversal inorder = new BTInorderTraversal();
 		TreeNode root = new TreeNode(1);
 		root.right = new TreeNode(2);
 		root.right.left = new TreeNode(3);
@@ -431,8 +446,92 @@ public class Main {
 		// System.out.println(subs.longestPalindrome("abcb"));
 
 		LongestCommonSubstring substring = new LongestCommonSubstring();
-		System.out.println(substring.longestCommonSubstring("abfce", "abcde"));
-		System.out.println(substring.longestCommonSubstring("sfgabfce", "abcde"));
-		System.out.println(substring.longestCommonSubstring("sfgabfce", ""));
+		// System.out.println(substring.longestCommonSubstring("abfce", "abcde"));
+		// System.out.println(substring.longestCommonSubstring("sfgabfce", "abcde"));
+		// System.out.println(substring.longestCommonSubstring("sfgabfce", ""));
+		NoOfTimesRotatedCOPY c1 = new NoOfTimesRotatedCOPY();
+		// c1.noOfTimes(new int[] { 11, 13, 15, 17 });
+
+		MinStackNoExtraSpace minStackNoExtraSpace = new MinStackNoExtraSpace();
+//		minStackNoExtraSpace.push(-2);
+//		minStackNoExtraSpace.push(0);
+//		minStackNoExtraSpace.push(-3);
+//		System.out.println(minStackNoExtraSpace.getMin());
+//		minStackNoExtraSpace.pop();
+//		System.out.println(minStackNoExtraSpace.top());
+//		System.out.println(minStackNoExtraSpace.getMin());
+
+		EqualPartitionSubsetSum equalPartition = new EqualPartitionSubsetSum();
+//		equalPartition.isEqualPartitionSUmTabular(new int[] { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+//				100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 99, 97 });
+		FindIndicesOfOccurrencesOfAnagram count = new FindIndicesOfOccurrencesOfAnagram();
+		// System.out.println(count.findAnagrams1("cbaebabacd", "abc"));
+
+		LongestSubstringWithKUniqueCharacters a2 = new LongestSubstringWithKUniqueCharacters();
+		// System.out.println(a2.longestkSubstr("aabacbebebe", 3));
+		// System.out.println(a2.longestkSubstr("aaaa", 2));
+
+		LongestSubstringWithoutRepeatingCharacters longSubstring = new LongestSubstringWithoutRepeatingCharacters();
+		// System.out.println(longSubstring.lengthOfLongestSubstringWithSW("pwwkew"));
+
+		SortArray sort1 = new SortArray();
+		// System.out.println(Arrays.toString(sort1.sort(new int[] { 3, 1, 2 })));
+
+		Permutations permutations = new Permutations();
+		// System.out.println(permutations.permute(new int[] { 1, 2 }));
+		ReverseWordsInString1 reverse1 = new ReverseWordsInString1();
+		// System.out.println(reverse1.reverseWords("the sky is blue"));
+
+		LongestPalindromicSubstring palin1 = new LongestPalindromicSubstring();
+		// System.out.println(palin1.longestPalindrome("cbbd"));
+
+		SpiralMatrix spiral = new SpiralMatrix();
+
+		AddTwoNumbers2 addList = new AddTwoNumbers2();
+		ListNode l11 = new ListNode(8);
+		ListNode l12 = new ListNode(9);
+		ListNode l13 = new ListNode(9);
+		l11.next = l12;
+		l12.next = l13;
+
+		ListNode l21 = new ListNode(2);
+
+//		System.out.println(addList.addTwoNumbers(l11, l21));
+//		System.out.println();
+
+		ZigzagLevelOrderTraversal zigzag = new ZigzagLevelOrderTraversal();
+		TreeNode root1 = new TreeNode(3);
+		root1.left = new TreeNode(9);
+		root1.right = new TreeNode(20);
+		root1.right.left = new TreeNode(15);
+		root1.right.right = new TreeNode(7);
+		// System.out.println(zigzag.zigzagLevelOrder(root1));
+
+		BinaryTreeInorderPreorderConstruct cons = new BinaryTreeInorderPreorderConstruct();
+		// TreeNode root12 = cons.buildTree(new int[] { 3, 9, 20, 15, 7 }, new int[] {
+		// 9, 3, 15, 20, 7 });
+		// cons.printInorder(root12);
+
+//		CloneGraph cloneGraph = new CloneGraph();
+//		Node n1 = new Node(1);
+//		Node n2 = new Node(2);
+//		Node n3 = new Node(3);
+//		Node n4 = new Node(4);
+//List<Node> l1 = new ArrayList<>(Arrays.asList(n2, n3));
+//List<Node> l2 = new ArrayList<>(Arrays.asList(n1, n3));
+//List<Node> l3 = new ArrayList<>(Arrays.asList(n2, n4));
+//List<Node> l4 = new ArrayList<>(Arrays.asList(n1, n3));
+//		cloneGraph.cloneGraph(n1);
+
+		FindTheCelebrity findTheCelebrity = new FindTheCelebrity();
+		// findTheCelebrity.findCelebrity2(3);
 	}
 }

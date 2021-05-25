@@ -42,7 +42,6 @@ public class FrequencySort {
 			// put frequency first so that min heap uses freq to sort
 			maxHeap.add(new Element(curr.getValue(), curr.getKey()));
 
-		int j = 0;
 		while (!maxHeap.isEmpty()) {
 			Element ele = maxHeap.remove();
 			Character currCh = ele.ch;

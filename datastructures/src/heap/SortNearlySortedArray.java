@@ -12,9 +12,9 @@ public class SortNearlySortedArray {
 		int j = 0;
 		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 		for (int i = 0; i < n; i++) {
+			minHeap.add(arr[i]);
 			if (minHeap.size() > k)
 				result[j++] = minHeap.remove();
-			minHeap.add(arr[i]);
 		}
 		while (!minHeap.isEmpty())
 			result[k++] = minHeap.remove();

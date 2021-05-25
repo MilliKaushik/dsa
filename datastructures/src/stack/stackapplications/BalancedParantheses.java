@@ -7,7 +7,7 @@ import java.util.Stack;
 //https://leetcode.com/explore/interview/card/top-interview-questions-easy/99/others/721/
 public class BalancedParantheses {
 
-	private final static Map<Character, Character> PARAN_MATCH_MAP = new HashMap<>();;
+	private final static Map<Character, Character> PARAN_MATCH_MAP = new HashMap<>();
 	static {
 		PARAN_MATCH_MAP.put(']', '[');
 		PARAN_MATCH_MAP.put('}', '{');
@@ -31,8 +31,6 @@ public class BalancedParantheses {
 				}
 			}
 		}
-		if (!stack.isEmpty())
-			return false;
-		return true;
+		return stack.isEmpty();
 	}
 }

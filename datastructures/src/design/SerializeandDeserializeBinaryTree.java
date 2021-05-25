@@ -1,84 +1,77 @@
 package design;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 import tree.TreeNode;
 
-//https://leetcode.com/explore/interview/card/top-interview-questions-medium/112/design/812/
+//https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+//https://leetcode.com/problems/serialize-and-deserialize-binary-tree/solution/
 public class SerializeandDeserializeBinaryTree {
-	private static final char OPEN_BKT = '[';
-	private static final char CLOSE_BKT = ']';
-	private static final String NULL = "null";
-	private static final char COMMA = ',';
 
-	public String serialize(TreeNode root) {
-		StringBuffer str = new StringBuffer();
-		str.append(OPEN_BKT);
-		if (root != null)
-			str.append(String.valueOf(root.val));
-
-		Queue<TreeNode> queue = new LinkedList<>();
-		queue.add(root);
-
-		while (!queue.isEmpty()) {
-			int size = queue.size();
-			while (size-- != 0) {
-				TreeNode t = queue.remove();
-				String currVal = t != null ? String.valueOf(t.val) : NULL;
-				str.append(currVal);
-				str.append(COMMA);
-				TreeNode left = t.left != null ? t.left : null;
-				queue.add(left);
-				TreeNode right = t.right != null ? t.right : null;
-				queue.add(right);
-			}
-		}
-		// removing last comma
-		str.deleteCharAt(str.length() - 1);
-		str.append(CLOSE_BKT);
+	public static String serialize(TreeNode root) {
+		StringBuilder str = new StringBuilder();
+		preorder(root, str);
 		return str.toString();
 	}
 
-	public TreeNode deserialize(String data) {
-		TreeNode root = null, prev = null;
-		StringBuffer str = new StringBuffer();
-		boolean isLeftSet = false;
-		boolean isRightSet = false;
-		int i = 1;
-		while (true) {
-			while (i < data.length() - 1 && (data.charAt(i) != COMMA)) {
-				str.append(data.charAt(i));
-				i++;
-			}
-			if (str.equals(NULL)) {
-				if (!isLeftSet)
-					isLeftSet = true;
-				isRightSet = false;
-				continue;
-			}
-			int val = Integer.parseInt(str.toString());
-			TreeNode node = new TreeNode(val);
-			if (root == null) {
-				root = node;
-				prev = root;
-				isLeftSet = false;
-			} else {
-				if (!isLeftSet)
-					root.left = node;
-				else {
-					root.right = node;
-					if (root.left != null)
-						root = root.left;
-					else
-						root = root.right;
-				}
-			}
-			if (i == data.length())
-				break;
-			// to take care of comma
-			i++;
+	// Can we just append a character for null instead of the whole null string like
+	// a #?
+	private static void preorder(TreeNode root, StringBuilder str) {
+		if (root == null) {
+			// placeholder MIN_VALUE to represent null value - as it is given that values of
+			// nodes will lie between -1000 to 1000
+			str.append(intToString(Integer.MIN_VALUE));
+			return;
 		}
-		return root;
+		str.append(intToString(root.val));
+		preorder(root.left, str);
+		preorder(root.right, str);
+	}
+
+	private static String intToString(int x) {
+		char[] bytes = new char[4];
+		for (int i = 3; i >= 0; i--)
+			bytes[3 - i] = (char) (x >> (i * 8) & 0xff);
+		return new String(bytes);
+	}
+
+	static int preIndex = 0;
+
+	public static TreeNode deserialize(String data) {
+		int[] values = new int[data.length() / 4];
+		for (int i = 0; i < data.length() / 4; i++)
+			values[i] = stringToInt(data.substring(i * 4, i * 4 + 4));
+		return constructTreeFromPreorder(values);
+	}
+
+	private static TreeNode constructTreeFromPreorder(int[] values) {
+		if (preIndex == values.length)
+			return null;
+		if (values[preIndex] == Integer.MIN_VALUE) {
+			preIndex++;
+			return null;
+		}
+		TreeNode t = new TreeNode(values[preIndex]);
+		preIndex++;
+		t.left = constructTreeFromPreorder(values);
+		t.right = constructTreeFromPreorder(values);
+		return t;
+	}
+
+	private static Integer stringToInt(String a) {
+		int k = 0;
+		for (char c : a.toCharArray())
+			k = (k << 8) + (int) c;
+		return k;
+	}
+
+	public static void main(String[] args) {
+		TreeNode t = new TreeNode(1);
+		t.left = new TreeNode(2);
+		t.right = new TreeNode(3);
+		t.right.left = new TreeNode(4);
+		t.right.right = new TreeNode(5);
+
+		String output = serialize(t);
+		TreeNode outputNode = deserialize(output);
+		System.out.println(outputNode);
 	}
 }

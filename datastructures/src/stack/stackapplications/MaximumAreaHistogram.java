@@ -1,6 +1,12 @@
 package stack.stackapplications;
 
 import java.util.Stack;
+//MAH
+//right -> NSR(arr)
+//left -> NSL(arr)
+//width[i] -> right[i] - left[i] - 1
+//area[i] -> arr[i] * width[i]
+//return max in area
 
 //https://www.youtube.com/watch?v=J2X70jj_I1o&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd&index=7
 public class MaximumAreaHistogram {

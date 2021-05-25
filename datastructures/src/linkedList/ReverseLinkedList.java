@@ -33,7 +33,7 @@ public class ReverseLinkedList {
 			nextNext = next.next;
 			next.next = current;
 			current = next;
-			next = nextNext;			
+			next = nextNext;
 		}
 		head = current;
 		return head;

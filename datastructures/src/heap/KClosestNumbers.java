@@ -27,12 +27,10 @@ public class KClosestNumbers {
 		List<Integer> result = new ArrayList<>();
 		PriorityQueue<Element> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 		for (int i = 0; i < arr.length; i++) {
+			maxHeap.add(new Element(Math.abs(arr[i] - x), arr[i]));
 			if (maxHeap.size() > k)
 				maxHeap.remove();
-			maxHeap.add(new Element(Math.abs(arr[i] - x), arr[i]));
 		}
-		if (maxHeap.size() > k)
-			maxHeap.remove();
 		while (!maxHeap.isEmpty())
 			result.add(maxHeap.remove().number);
 		return result;

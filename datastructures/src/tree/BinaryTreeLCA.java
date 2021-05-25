@@ -5,6 +5,21 @@ package tree;
 //https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
 public class BinaryTreeLCA {
 
+	// https://leetcode.com/explore/interview/card/microsoft/31/trees-and-graphs/181/
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		if (root == null)
+			return null;
+		if (root == p || root == q)
+			return root;
+		TreeNode left = lowestCommonAncestor(root.left, p, q);
+		TreeNode right = lowestCommonAncestor(root.right, p, q);
+		if (left != null && right != null)
+			return root;
+		if (left == null)
+			return right;
+		return left;
+	}
+
 	public TreeNode findLCANode(TreeNode root, TreeNode n1, TreeNode n2) {
 		if (isNodePresentNode(root, n1) && isNodePresentNode(root, n2))
 			return findLCAUtilNode(root, n1, n2);

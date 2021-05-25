@@ -31,12 +31,10 @@ public class KClosestNumbersGFG {
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == x)
 				continue;
+			maxHeap.add(new Element(Math.abs(arr[i] - x), arr[i]));
 			if (maxHeap.size() > k)
 				maxHeap.remove();
-			maxHeap.add(new Element(Math.abs(arr[i] - x), arr[i]));
 		}
-		if (maxHeap.size() > k)
-			maxHeap.remove();
 		int j = 0;
 		PriorityQueue<Element> minHeap = new PriorityQueue<>();
 		while (!maxHeap.isEmpty())

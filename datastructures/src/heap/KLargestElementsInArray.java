@@ -13,12 +13,10 @@ public class KLargestElementsInArray {
 			return new ArrayList<>();
 		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 		for (int i = 0; i < n; i++) {
+			minHeap.add(arr.get(i));
 			if (minHeap.size() > k)
 				minHeap.remove();
-			minHeap.add(arr.get(i));
 		}
-		if (minHeap.size() > k)
-			minHeap.remove();
 		ArrayList<Integer> kLargestElements = new ArrayList<>();
 		for (int j = 0; j < k; j++)
 			kLargestElements.add(minHeap.remove());

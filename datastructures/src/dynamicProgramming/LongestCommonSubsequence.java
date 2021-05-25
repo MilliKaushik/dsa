@@ -1,5 +1,6 @@
 package dynamicProgramming;
 
+//How to identify if LCS based question? If two strings in input a and b and asking to do some optimal thing like max, min etc
 //https://www.youtube.com/watch?v=4dMlCZTONj8&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=18
 public class LongestCommonSubsequence {
 
@@ -40,7 +41,7 @@ public class LongestCommonSubsequence {
 	public int lcsTopDown(String a, String b) {
 		int m = a.length();
 		int n = b.length();
-		int[][] t = new int[m][n];
+		int[][] t = new int[m + 1][n + 1];
 		for (int i = 0; i <= m; i++)
 			for (int j = 0; j <= n; j++)
 				if (i == 0 || j == 0)
@@ -60,7 +61,7 @@ public class LongestCommonSubsequence {
 	public String printLcs(String a, String b) {
 		int m = a.length();
 		int n = b.length();
-		int[][] t = new int[m][n];
+		int[][] t = new int[m + 1][n + 1];
 		for (int i = 0; i <= m; i++)
 			for (int j = 0; j <= n; j++)
 				if (i == 0 || j == 0)
