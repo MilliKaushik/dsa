@@ -6,6 +6,7 @@ import java.util.Map;
 //https://www.geeksforgeeks.org/design-a-data-structure-for-lru-cache/
 //https://leetcode.com/explore/interview/card/top-interview-questions-hard/122/design/867/
 //Both get and put are in O(1) time
+//https://www.interviewbit.com/problems/lru-cache/
 public class LRUCache2 {
 	private int capacity, size;
 	private Map<Integer, Node> cache;

@@ -3,9 +3,10 @@ package design;
 import java.util.HashMap;
 import java.util.Map;
 
-//using doubly licked list to store keys
+//using doubly linked list to store keys
 //and map to store key and value
 //Complexity O(n) - removeFromList complexity is O(n)
+//https://www.interviewbit.com/problems/lru-cache/
 public class LRUCache1 {
 
 	private class Node {
