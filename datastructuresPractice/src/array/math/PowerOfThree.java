@@ -3,6 +3,11 @@ package array.math;
 //https://leetcode.com/problems/power-of-three/submissions/
 public class PowerOfThree {
 
+	// https://www.interviewbit.com/problems/power-of-2/
+	public int power(String A) {
+		return 1;
+	}
+
 	public boolean isPowerOfThree(int n) {
 		if (n == 0)
 			return false;

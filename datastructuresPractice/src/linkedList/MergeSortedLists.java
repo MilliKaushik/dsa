@@ -1,6 +1,9 @@
 package linkedList;
 
+import java.util.ArrayList;
+
 //https://leetcode.com/explore/interview/card/top-interview-questions-easy/93/linked-list/771/
+//https://www.interviewbit.com/problems/merge-k-sorted-lists/
 public class MergeSortedLists {
 
 	public ListNode mergeTwoListsIterative(ListNode l1, ListNode l2) {
@@ -56,9 +59,43 @@ public class MergeSortedLists {
 		}
 	}
 
+	// https://www.interviewbit.com/problems/merge-k-sorted-lists/
+	public ListNode mergeKLists(ArrayList<ListNode> a) {
+		if (a.isEmpty())
+			return null;
+		ListNode head = a.get(0);
+		for (int i = 1; i < a.size(); i++)
+			head = merge1(a.get(i), head);
+		return head;
+	}
+
+	private ListNode merge1(ListNode a, ListNode b) {
+		ListNode head = null, node = null, prev = null;
+		ListNode c1 = a, c2 = b;
+		while (c1 != null && c2 != null) {
+			if (c1.val <= c2.val) {
+				node = c1;
+				c1 = c1.next;
+			} else {
+				node = c2;
+				c2 = c2.next;
+			}
+			if (prev != null)
+				prev.next = node;
+			prev = node;
+			if (head == null)
+				head = node;
+		}
+		if (c1 != null)
+			node.next = c1;
+		if (c2 != null)
+			node.next = c2;
+		return head;
+	}
+
 	// https://leetcode.com/explore/interview/card/top-interview-questions-hard/117/linked-list/839/
 	public ListNode mergeKLists(ListNode[] lists) {
-		if(lists.length == 0)
+		if (lists.length == 0)
 			return null;
 		ListNode first = lists[0];
 		for (int i = 1; i < lists.length; i++) {

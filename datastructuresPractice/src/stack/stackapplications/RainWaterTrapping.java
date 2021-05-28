@@ -2,6 +2,7 @@ package stack.stackapplications;
 
 //https://www.youtube.com/watch?v=FbGG2qpNp4U&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd&index=9
 //https://leetcode.com/problems/trapping-rain-water/
+//https://www.interviewbit.com/problems/rain-water-trapped/
 public class RainWaterTrapping {
 
 	public int trap(int[] height) {
