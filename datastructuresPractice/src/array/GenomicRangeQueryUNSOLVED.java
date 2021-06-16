@@ -5,7 +5,7 @@ import java.util.Map;
 
 //https://app.codility.com/c/run/trainingHEQFY7-WFX/
 
-public class GenomicRangeQuery {
+public class GenomicRangeQueryUNSOLVED {
 
 	public int[] solution(String s, int[] p, int[] q) {
 		int[] result = new int[p.length];

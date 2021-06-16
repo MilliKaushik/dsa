@@ -1,5 +1,6 @@
 package array;
 
+//implement ArrayList class in Java
 public class Array<E> {
 	// add an element
 	// remove an element

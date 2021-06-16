@@ -3,6 +3,7 @@ package array;
 //https://www.geeksforgeeks.org/array-rotation/
 //https://leetcode.com/problems/rotate-array/
 //https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
+//https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/start/
 public class RotateArrayByK {
 
 	// right rotation

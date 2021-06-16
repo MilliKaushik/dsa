@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import array.ArrayPractice;
 import array.FindTheCelebrity;
 import array.RotateArrayByK;
 import array.ThreeSum;
 import array.bitwise.HammingDistance;
 import array.bitwise.ReverseBits;
 import array.bitwise.SumOfTwoNosWithoutPlusMinusOperator;
-import array.graph.CloneGraph;
-import array.graph.CloneGraph.Node;
 import array.math.DivideTwoIntegers;
 import array.math.FractionToDecimal;
 import array.math.NthNaturalNumber;
@@ -43,7 +42,6 @@ import design.RateLimiter;
 import dynamicProgramming.EqualPartitionSubsetSum;
 import dynamicProgramming.IsSubsequence;
 import dynamicProgramming.LongestCommonSubstring;
-import dynamicProgramming.LongestIncreasingSubsequence;
 import dynamicProgramming.LongestPalindromicSubstring;
 import heap.KClosestNumbers;
 import heap.KClosestNumbersGFG;
@@ -550,5 +548,26 @@ public class Main {
 		System.out.println(rateLimiter.rateLimit(1));
 		System.out.println(rateLimiter.rateLimit(1));
 		System.out.println(rateLimiter.rateLimit(2));
+
+		ArrayPractice<Integer> arr100 = new ArrayPractice<>();
+		// System.out.println(arr.size());
+		arr100.add(10);
+		arr100.add(20);
+		// System.out.println(arr.size());
+		arr100.add(30);
+		// System.out.println(arr.size());
+		arr100.add(40);
+		// System.out.println(arr.size());
+		arr100.add(50);
+		// System.out.println(arr.size());
+		arr100.remove(0);
+		arr100.print();
+		arr100.remove(3);
+		arr100.print();
+		arr100.remove(2);
+		arr100.print();
+		arr100.remove(1);
+		arr100.print();
+
 	}
 }

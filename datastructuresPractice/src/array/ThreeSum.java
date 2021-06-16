@@ -2,6 +2,7 @@ package array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -80,25 +81,28 @@ public class ThreeSum {
 
 	// extra space O(n2) time O(n) space - not changing the array
 	public List<List<Integer>> threeSum2(int[] nums) {
-		List<List<Integer>> result = new ArrayList<>();
-		int n = nums.length;
+		Set<List<Integer>> result = new HashSet<>();
+        int n = nums.length;
 
-		Map<Integer, List<Integer>> sumToIndex = new HashMap<>();
+        Map<Integer, List<Integer>> sumToIndex = new HashMap<>();
 
-		Set<Integer> set = new HashSet<>();
-		int sum;
-		for (int i = 0; i < n; i++)
-			for (int j = i + 1; j < n; j++) {
-				sum = -(nums[i] + nums[j]);
-				if (set.contains(sum)) {
-					List<Integer> triplet = new ArrayList<>();
-					triplet.add(nums[i]);
-					triplet.add(nums[j]);
-					triplet.add(sum);
-					result.add(triplet);
-				}
-				set.add(nums[j]);
-			}
-		return result;
+        Set<Integer> set = new HashSet<>();
+        int sum;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                sum = -(nums[i] + nums[j]);
+                if (set.contains(sum)) {
+                    List<Integer> triplet = new ArrayList<>();
+                    triplet.add(nums[i]);
+                    triplet.add(nums[j]);
+                    triplet.add(sum);
+                    Collections.sort(triplet);
+                    result.add(triplet);
+                }
+            }
+            set.add(nums[i]);
+            }
+
+        return new ArrayList<>(result);
 	}
 }
