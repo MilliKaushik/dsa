@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/546/
+//https://leetcode.com/problems/two-sum/
 public class TwoSum {
 
 	public int[] twoSum(int[] nums, int target) {
@@ -64,7 +64,8 @@ public class TwoSum {
 			result.add(j + 1);
 			return;
 		} else {
-			if(result.get(1) > j) {}
+			if (result.get(1) > j) {
+			}
 		}
 
 	}

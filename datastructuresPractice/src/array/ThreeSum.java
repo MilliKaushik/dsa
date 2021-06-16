@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-//https://leetcode.com/explore/interview/card/top-interview-questions-medium/103/array-and-strings/776/
+//https://leetcode.com/problems/3sum/	
 public class ThreeSum {
 
 	// sorting O(nlogn) then traversing O(n2)
@@ -41,7 +41,28 @@ public class ThreeSum {
 
 	private void sort(int[] nums) {
 		mergesort(nums, 0, nums.length - 1);
+	}
 
+	public List<List<Integer>> threeSum(int[] arr) {
+		int n = arr.length;
+		Map<Integer, List<Integer>> map = new HashMap<>();
+		for (int i = 0; i < n; i++)
+			for (int j = i + 1; j < n; j++)
+				map.put(arr[i] + arr[j], Arrays.asList(arr[i], arr[j]));
+
+		Set<List<Integer>> result = new HashSet<>();
+		for (int i = 0; i < n; i++) {
+			if (map.containsKey(-arr[i])) {
+				List<Integer> list = new ArrayList<>();
+				list.add(arr[i]);
+				List<Integer> elements = map.get(arr[i]);
+				for (Integer x : elements)
+					list.add(x);
+				Collections.sort(list);
+				result.add(list);
+			}
+		}
+		return new ArrayList<>(result);
 	}
 
 	private void mergesort(int[] nums, int st, int end) {
@@ -82,27 +103,27 @@ public class ThreeSum {
 	// extra space O(n2) time O(n) space - not changing the array
 	public List<List<Integer>> threeSum2(int[] nums) {
 		Set<List<Integer>> result = new HashSet<>();
-        int n = nums.length;
+		int n = nums.length;
 
-        Map<Integer, List<Integer>> sumToIndex = new HashMap<>();
+		Map<Integer, List<Integer>> sumToIndex = new HashMap<>();
 
-        Set<Integer> set = new HashSet<>();
-        int sum;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                sum = -(nums[i] + nums[j]);
-                if (set.contains(sum)) {
-                    List<Integer> triplet = new ArrayList<>();
-                    triplet.add(nums[i]);
-                    triplet.add(nums[j]);
-                    triplet.add(sum);
-                    Collections.sort(triplet);
-                    result.add(triplet);
-                }
-            }
-            set.add(nums[i]);
-            }
+		Set<Integer> set = new HashSet<>();
+		int sum;
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j < n; j++) {
+				sum = -(nums[i] + nums[j]);
+				if (set.contains(sum)) {
+					List<Integer> triplet = new ArrayList<>();
+					triplet.add(nums[i]);
+					triplet.add(nums[j]);
+					triplet.add(sum);
+					Collections.sort(triplet);
+					result.add(triplet);
+				}
+			}
+			set.add(nums[i]);
+		}
 
-        return new ArrayList<>(result);
+		return new ArrayList<>(result);
 	}
 }
