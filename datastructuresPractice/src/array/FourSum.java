@@ -10,10 +10,60 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//https://leetcode.com/problems/4sum/
 //https://www.interviewbit.com/problems/4-sum/
 //https://www.geeksforgeeks.org/find-four-elements-that-sum-to-a-given-value-set-2/
 public class FourSum {
 
+	public static void main(String[] args) {
+		System.out.println(fourSum(new int[] { -4, -3, -2, -1, 0, 0, 1, 2, 3, 4 }, 0));
+
+//		System.out.println(fourSum(Arrays.asList(5, 4, 2, 8, 3), 19));
+//
+//		System.out.println(fourSum(Arrays.asList(9, -8, -10, -7, 7, -8, 2, -7, 4, 7, 0, -3, -4, -5, -1, -4, 5, 8, 1, 9,
+//				-2, 5, 10, -5, -7, -1, -6, 4, 1, -5, 3, 8, -4, -10, -9, -3, 10, 0, 7, 9, -8, 10, -9, 7, 8, 0, 6, -6, -7,
+//				6, -4, 2, 0, 10, 1, -2, 5, -2), 0));
+	}
+
+	public static List<List<Integer>> fourSum(int[] arr, int target) {
+		List<List<Integer>> result = new ArrayList<>();
+		int n = arr.length;
+		Map<Integer, List<List<Integer>>> map = new HashMap<>();
+		for (int i = 0; i < n; i++)
+			for (int j = i + 1; j < n; j++) {
+				int sum = arr[i] + arr[j];
+				if (!map.containsKey(sum)) {
+					List<List<Integer>> list = new ArrayList<>();
+					list.add(Arrays.asList(i, j));
+					map.put(sum, list);
+				} else {
+					List<List<Integer>> indices = map.get(sum);
+					indices.add(Arrays.asList(i, j));
+					map.put(sum, indices);
+				}
+			}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j < n; j++) {
+				int sum = arr[i] + arr[j];
+				if (map.containsKey(target - sum)) {
+					List<List<Integer>> indices = map.get(target - sum);
+					for (List<Integer> indexPair : indices) {
+						if (!indexPair.contains(i) && !indexPair.contains(j)) {
+							List<Integer> candidate = Arrays.asList(arr[i], arr[j], arr[indexPair.get(0)],
+									arr[indexPair.get(1)]);
+							Collections.sort(candidate);
+							if (!result.contains(candidate))
+								result.add(candidate);
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	// check below code
 	private static class Element {
 		private int index1;
 		private int index2;
@@ -52,14 +102,6 @@ public class FourSum {
 		}
 		// Collections.sort(Arrays.asList(result), new ListComparator());
 		return new ArrayList<>();
-	}
-
-	public static void main(String[] args) {
-		System.out.println(fourSum(Arrays.asList(5, 4, 2, 8, 3), 19));
-
-		System.out.println(fourSum(Arrays.asList(9, -8, -10, -7, 7, -8, 2, -7, 4, 7, 0, -3, -4, -5, -1, -4, 5, 8, 1, 9,
-				-2, 5, 10, -5, -7, -1, -6, 4, 1, -5, 3, 8, -4, -10, -9, -3, 10, 0, 7, 9, -8, 10, -9, 7, 8, 0, 6, -6, -7,
-				6, -4, 2, 0, 10, 1, -2, 5, -2), 0));
 	}
 
 	private static class ListComparator implements Comparator<ArrayList<Integer>> {

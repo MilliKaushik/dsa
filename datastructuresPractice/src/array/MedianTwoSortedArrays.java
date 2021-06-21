@@ -39,8 +39,7 @@ public class MedianTwoSortedArrays {
 	private double medianFound(int[] arr, int i, int j, boolean totalNoEven) {
 		if (!totalNoEven) {
 			return i;
-		} else {
+		} else
 			return (double) (i + j) / 2;
-		}
 	}
 }

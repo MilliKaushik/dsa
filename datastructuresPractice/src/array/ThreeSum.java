@@ -43,28 +43,6 @@ public class ThreeSum {
 		mergesort(nums, 0, nums.length - 1);
 	}
 
-	public List<List<Integer>> threeSum(int[] arr) {
-		int n = arr.length;
-		Map<Integer, List<Integer>> map = new HashMap<>();
-		for (int i = 0; i < n; i++)
-			for (int j = i + 1; j < n; j++)
-				map.put(arr[i] + arr[j], Arrays.asList(arr[i], arr[j]));
-
-		Set<List<Integer>> result = new HashSet<>();
-		for (int i = 0; i < n; i++) {
-			if (map.containsKey(-arr[i])) {
-				List<Integer> list = new ArrayList<>();
-				list.add(arr[i]);
-				List<Integer> elements = map.get(arr[i]);
-				for (Integer x : elements)
-					list.add(x);
-				Collections.sort(list);
-				result.add(list);
-			}
-		}
-		return new ArrayList<>(result);
-	}
-
 	private void mergesort(int[] nums, int st, int end) {
 		if (st < end) {
 			int mid = st + (end - st) / 2;
@@ -105,8 +83,6 @@ public class ThreeSum {
 		Set<List<Integer>> result = new HashSet<>();
 		int n = nums.length;
 
-		Map<Integer, List<Integer>> sumToIndex = new HashMap<>();
-
 		Set<Integer> set = new HashSet<>();
 		int sum;
 		for (int i = 0; i < n; i++) {
@@ -123,7 +99,6 @@ public class ThreeSum {
 			}
 			set.add(nums[i]);
 		}
-
 		return new ArrayList<>(result);
 	}
 }
