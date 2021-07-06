@@ -1,7 +1,41 @@
 package linkedList;
 
 //https://leetcode.com/explore/interview/card/top-interview-questions-medium/107/linked-list/785/
+//https://www.interviewbit.com/problems/intersection-of-linked-lists/
+//https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
+//This is the difference solution, another can be make a loop solution
 public class IntersectionofTwoLinkedLists {
+
+	public ListNode getIntersectionNode(ListNode a, ListNode b) {
+		int sizeA = size(a);
+		int sizeB = size(b);
+		if (sizeA < sizeB) {
+			ListNode temp = a;
+			a = b;
+			b = temp;
+		}
+		int diff = Math.abs(sizeA - sizeB);
+		while (diff-- != 0)
+			a = a.next;
+		return getIntersection(a, b);
+	}
+
+	private int size(ListNode node) {
+		int size = 0;
+		while (node != null) {
+			size++;
+			node = node.next;
+		}
+		return size;
+	}
+
+	private ListNode getIntersection(ListNode a, ListNode b) {
+		if (a == b)
+			return a;
+		if (a == null || b == null)
+			return null;
+		return getIntersection(a.next, b.next);
+	}
 
 	public ListNode getIntersectionNode1(ListNode l1, ListNode l2) {
 		int len1 = length(l1);

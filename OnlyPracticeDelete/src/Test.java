@@ -6,6 +6,11 @@ import java.util.Set;
 
 public class Test {
 
+	public ListNode reverseLinkedList(ListNode head) {
+
+		return null;
+	}
+
 	public List<List<Integer>> threeSum(int[] nums, int target) {
 		Set<Integer> set = new HashSet<>();
 		List<List<Integer>> result = new ArrayList<>();

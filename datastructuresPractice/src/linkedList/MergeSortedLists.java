@@ -6,6 +6,31 @@ import java.util.ArrayList;
 //https://www.interviewbit.com/problems/merge-k-sorted-lists/
 public class MergeSortedLists {
 
+	// optimized solution
+	public ListNode mergeTwoLists(ListNode a, ListNode b) {
+		if (a == null)
+			return b;
+		if (b == null)
+			return a;
+		ListNode newHead = (a.val <= b.val) ? a : b;
+		while (a != null && b != null) {
+			if (a.val <= b.val) {
+				while (a != null && a.next != null && a.next.val <= b.val)
+					a = a.next;
+				ListNode nextA = a.next;
+				a.next = b;
+				a = nextA;
+			} else {
+				while (b != null && b.next != null && b.next.val <= a.val)
+					b = b.next;
+				ListNode nextB = b.next;
+				b.next = a;
+				b = nextB;
+			}
+		}
+		return newHead;
+	}
+
 	public ListNode mergeTwoListsIterative(ListNode l1, ListNode l2) {
 		ListNode head = null;
 		ListNode prev = head, current = head;
