@@ -6,37 +6,34 @@ import java.util.TreeSet;
 public class NextSimilarNumber {
 
 	public static String solve(String str) {
-		TreeSet<String> strPermutations = findPermutations(str);
-		return strPermutations.higher(str);
+		TreeSet<String> strPermutations = new TreeSet<>();
+		findPermutations(str, new StringBuilder(), str, strPermutations);
+		String nextHigher = strPermutations.higher(str);
+		if (nextHigher == null)
+			return "-1";
+		return nextHigher;
 	}
 
-	private static TreeSet<String> findPermutations(String str) {
-		TreeSet<String> set = new TreeSet<>();
-		for (int i = 0; i < str.length(); i++) {
-			StringBuilder path = new StringBuilder();
-			path.append(str.charAt(i));
-			backtrack(str, set, i, i, path);
-		}
-		return set;
-	}
-
-	private static void backtrack(String str, TreeSet<String> set, int index, int currentIndex, StringBuilder path) {
+	private static void findPermutations(String str, StringBuilder path, String rest, TreeSet<String> set) {
 		if (str.length() == path.length()) {
-			if (str.compareTo(path.toString()) == -1)
-				set.add(path.toString());
+			// optimization so that we only add the strings which are placed after this
+			// number to the set
+			if (str.compareTo(path.toString()) < 0)
+			set.add(path.toString());
 			return;
 		}
 
-		for (int i = 0; i < str.length(); i++) {
-			if (i != index && i != currentIndex) {
-				path.append(str.charAt(i));
-				backtrack(str, set, index, i + 1, path);
-				path.deleteCharAt(path.length() - 1);
-			}
+		for (int i = 0; i < rest.length(); i++) {
+			path.append(rest.charAt(i));
+			String left = rest.substring(0, i);
+			String right = rest.substring(i + 1, rest.length());
+			findPermutations(str, path, left + right, set);
+			path.deleteCharAt(path.length() - 1);
 		}
 	}
 
 	public static void main(String[] args) {
-		System.out.println(solve("132"));
+		// System.out.println(solve("312"));
+		System.out.println(solve("740948"));
 	}
 }

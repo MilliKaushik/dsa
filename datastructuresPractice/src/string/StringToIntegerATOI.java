@@ -23,10 +23,12 @@ public class StringToIntegerATOI {
 			i++;
 		}
 
+		// https://dev.to/algobot76/leetcode-7-reverse-integer-73j Logic to handle
+		// overflows
 		// getting numbers
 		int base = 0;
 		while (i < n && ch[i] >= '0' && ch[i] <= '9') {
-			if (base > Integer.MAX_VALUE / 10 || (base == Integer.MAX_VALUE/10 && ch[i] - '0' > 7)) {
+			if (base > Integer.MAX_VALUE / 10 || (base == Integer.MAX_VALUE / 10 && ch[i] - '0' > 7)) {
 				if (sign == 1)
 					return Integer.MAX_VALUE;
 				else
