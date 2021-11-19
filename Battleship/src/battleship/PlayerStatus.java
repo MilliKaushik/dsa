@@ -6,6 +6,8 @@ public class PlayerStatus {
 
 	private int noOfEnemyShipsDestroyed;
 
+	private int noOfOwnShipsLeft;
+
 	public int getPlayerId() {
 		return playerId;
 	}
@@ -20,6 +22,14 @@ public class PlayerStatus {
 
 	public void setNoOfEnemyShipsDestroyed(int noOfEnemyShipsDestroyed) {
 		this.noOfEnemyShipsDestroyed = noOfEnemyShipsDestroyed;
+	}
+
+	public int getNoOfOwnShipsLeft() {
+		return noOfOwnShipsLeft;
+	}
+
+	public void setNoOfOwnShipsLeft(int noOfOwnShipsLeft) {
+		this.noOfOwnShipsLeft = noOfOwnShipsLeft;
 	}
 
 }

@@ -5,6 +5,30 @@ import java.util.Stack;
 //https://leetcode.com/explore/interview/card/top-interview-questions-easy/93/linked-list/772/
 public class PalindromeLinkedList {
 
+	static ListNode left;
+
+	public static void main(String[] args) {
+		ListNode l1 = new ListNode(1);
+		ListNode l2 = new ListNode(2);
+		ListNode l3 = new ListNode(1);
+		l1.next = l2;
+		l2.next = l3;
+		left = l1;
+		System.out.println(lPalin(l1));
+	}
+	
+	
+	public static int lPalin(ListNode head) {
+		if (head == null)
+			return 1;
+		int isp = lPalin(head.next);
+		if (isp == 0)
+			return 0;
+		int isp1 = (left.val == head.val) ? 1 : 0;
+		left = left.next;
+		return isp1;
+	}
+
 	public boolean isPalindromeStack1(ListNode head) {
 		Stack<Integer> stack = new Stack<>();
 		int length = length(head);

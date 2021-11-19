@@ -1,8 +1,10 @@
 package battleship;
 
+import java.util.Date;
+
 public class GameService {
 
-	private GameValidator gameValidator;
+	private MoveValidator moveValidator;
 
 	private MoveExecutor moveExecutor;
 
@@ -24,14 +26,30 @@ public class GameService {
 
 		while (game.getGameStatus().equals(GameStatus.IN_PROGRESS)) {
 			Move move = playerInputManager.getNextMove(game, turn);
-
-			turn = !turn;
+			moveValidator.validate(game, move);
+			moveExecutor.executeMove(game, move);
+			turn = changeTurn(game, turn);
 		}
 
-		endGame(game.getId());
+		endGame(game);
 	}
 
-	public void endGame(int gameId) {
+	private boolean changeTurn(Game game, boolean turn) {
+		if (!turn)
+			incrementNoOfMissiledFired(game);
+		turn = !turn;
+		return turn;
+	}
+
+	private void incrementNoOfMissiledFired(Game game) {
+		int currentNoOfMissilesFired = game.getCurrentNoOfMissilesFired();
+		currentNoOfMissilesFired++;
+		game.setCurrentNoOfMissilesFired(currentNoOfMissilesFired);
 
 	}
+
+	public void endGame(Game game) {
+		game.setEndTime(new Date());
+	}
+
 }

@@ -9,6 +9,8 @@ public class CousinsinBT {
 	// https://www.interviewbit.com/problems/cousins-in-binary-tree/
 	// https://leetcode.com/problems/cousins-in-binary-tree/solution/
 	public boolean isCousins(TreeNode root, int x, int y) {
+		if (x == y)
+			return false;
 		int h1 = height(root, x);
 		int h2 = height(root, y);
 		if (h1 != h2)
@@ -32,22 +34,16 @@ public class CousinsinBT {
 	private int height(TreeNode root, int a) {
 		if (root == null)
 			return 0;
-		int ht = 0;
 		if (root.val == a)
-			return ht + 1;
+			return 1;
 		int leftHt = height(root.left, a);
 		if (leftHt > 0)
 			return leftHt + 1;
 		int rightHt = height(root.right, a);
 		if (rightHt > 0)
 			return rightHt + 1;
-		return ht;
+		return 0;
 	}
-
-	/**
-	 * Definition for binary tree class TreeNode { int val; TreeNode left; TreeNode
-	 * right; TreeNode(int x) { val = x; left=null; right=null; } }
-	 */
 
 	public int[] solve(TreeNode root, int k) {
 		List<Integer> resultList = new ArrayList<>();
@@ -90,13 +86,9 @@ public class CousinsinBT {
 			return 1;
 
 		int left = findDepth(root.left, k);
-		if (left != 0)
-			return 1 + left;
 
 		int right = findDepth(root.right, k);
-		if (right != 0)
-			return 1 + right;
 
-		return 0;
+		return 1 + Math.max(left, right);
 	}
 }
